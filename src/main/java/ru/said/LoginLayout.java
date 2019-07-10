@@ -1,12 +1,11 @@
 package ru.said;
 
 import com.vaadin.ui.*;
-//import com.vaadin.ui.PasswordField;
-//import com.vaadin.ui.TextField;
-//import com.vaadin.ui.VerticalLayout;
 import org.apache.log4j.Logger;
 import ru.said.service.UserService;
+
 import static ru.said.DatabaseUtils.getConnection;
+
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -36,16 +35,19 @@ public class LoginLayout extends VerticalLayout {
                             "Вход не выполнен",
                             Notification.Type.HUMANIZED_MESSAGE);
                 }
-            }   catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-        } catch (NoSuchAlgorithmException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-        userLogin.clear();
-        userPassword.clear();
+            } catch (SQLException e) {
+                LOGGER.error(e.getMessage(), e);
+            } catch (NoSuchAlgorithmException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+            userLogin.clear();
+            userPassword.clear();
         });
 
-
+        addComponents(userLogin, userPassword, inter);
+        setComponentAlignment(userLogin, Alignment.MIDDLE_CENTER);
+        setComponentAlignment(userPassword, Alignment.MIDDLE_CENTER);
+        setComponentAlignment(inter, Alignment.MIDDLE_CENTER);
     }
 
 

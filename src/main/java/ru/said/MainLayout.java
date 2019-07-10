@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class MainLayout extends HorizontalLayout {
+    private Button send = new Button("Отправить");
     private TextField email = new TextField("EMAIL");
     private TextField message = new TextField("text");
     private MenuBar logoutMenu = new MenuBar();
@@ -38,7 +39,7 @@ public class MainLayout extends HorizontalLayout {
         });
         LOGGER.debug("SELECT * FROM ddt_users");
         horizontalLayout.addComponents(email, message);
-        verticalLayout.addComponents(horizontalLayout, logoutMenu);
+        verticalLayout.addComponents(horizontalLayout, send, logoutMenu);
         addComponent(verticalLayout);
     }
 }
