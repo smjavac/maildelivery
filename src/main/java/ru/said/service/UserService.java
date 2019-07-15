@@ -12,7 +12,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class UserService {
-    private UserService() {}
+    private UserService() {
+    }
 
     public static boolean authentication(Connection connection, String log, String pass) throws SQLException, NoSuchAlgorithmException {
         try (PreparedStatement auth = connection.prepareStatement("SELECT * from ddt_users where login = ?")) {
@@ -35,7 +36,7 @@ public class UserService {
         return strBuilder.toString();
     }
 
-    public static void sendMessge(String email, String messageTxt ) throws MessagingException {
+    public static void sendMessage(String email, String messageTxt) throws MessagingException {
         Properties properties = new Properties();
         properties.put("mail.transport.protocol", "smtp");
         //Хост или IP-адрес почтового сервера

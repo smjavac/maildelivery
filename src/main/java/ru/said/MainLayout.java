@@ -25,7 +25,7 @@ public class MainLayout extends HorizontalLayout {
 
         send.addClickListener(clickEvent -> {
             try {
-                UserService.sendMessge(email.getValue(), messageTxT.getValue());
+                UserService.sendMessage(email.getValue(), messageTxT.getValue());
             } catch (MessagingException e) {
                 LOGGER.debug("сообщение не отправлено");
                 LOGGER.debug(e.getMessage());
