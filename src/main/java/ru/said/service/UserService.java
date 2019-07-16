@@ -36,7 +36,7 @@ public class UserService {
         return strBuilder.toString();
     }
 
-    public static void sendMessage(String email, String messageTxt) throws MessagingException {
+    public static void sendMessage(String emailForSend, String messageTxt, String myEmail, String password) throws MessagingException {
         Properties properties = new Properties();
         properties.put("mail.transport.protocol", "smtp");
         //Хост или IP-адрес почтового сервера
@@ -54,7 +54,7 @@ public class UserService {
                 new Authenticator() {
                     @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("sm.yusupov@yandex.ru", "s07071983");
+                        return new PasswordAuthentication(myEmail, password);
                     }
                 });
         //Создаем новое почтовое сообщение
@@ -62,7 +62,7 @@ public class UserService {
         //От кого
         message.setFrom(new InternetAddress("sm.yusupov@yandex.ru"));
         //Кому
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(emailForSend));
         //Тема письма
         message.setSubject("Очень важное письмо!!!");
         //Текст письма
