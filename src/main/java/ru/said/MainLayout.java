@@ -11,9 +11,9 @@ import ru.said.service.UserService;
 import javax.mail.*;
 
 
-
 public class MainLayout extends HorizontalLayout {
     private Button send = new Button("Отправить");
+    private Button inbox = new Button("Входящие");
     private TextField email = new TextField("EMAIL");
     private TextField messageTxT = new TextField("text");
     private MenuBar logoutMenu = new MenuBar();
@@ -32,6 +32,17 @@ public class MainLayout extends HorizontalLayout {
                 LOGGER.debug(e.getMessage());
             }
         });
+
+        inbox.addClickListener(clickEvent1 -> {
+            try {
+                UserService.ReadEmail();
+                LOGGER.debug("Письма считаны");
+            } catch (MessagingException e) {
+                LOGGER.error("Письма не считаны(((");
+                LOGGER.error(e.getMessage());
+            }
+        });
+
         logoutMenu.addItem("Logout", FontAwesome.SIGN_OUT, new MenuBar.Command() {
 
             @Override
@@ -42,7 +53,7 @@ public class MainLayout extends HorizontalLayout {
         });
         LOGGER.debug("SELECT * FROM ddt_users");
         horizontalLayout.addComponents(email, messageTxT);
-        verticalLayout.addComponents(horizontalLayout, send, logoutMenu);
+        verticalLayout.addComponents(horizontalLayout, send, inbox, logoutMenu);
         addComponent(verticalLayout);
     }
 
