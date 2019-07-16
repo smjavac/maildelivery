@@ -72,7 +72,7 @@ public class UserService {
 
     }
 
-    public static void ReadEmail() throws MessagingException {
+    public static void ReadEmail(String email, String password) throws MessagingException {
 
             //Объект properties содержит параметры соединения
             Properties properties = new Properties();
@@ -90,7 +90,7 @@ public class UserService {
                 //см. раздел "Входящая почта"
                 store = session.getStore("imap");
                 //Подключаемся к почтовому ящику
-                store.connect("imap.yandex.ru", 993, "sm.yusupov@yandex.ru", "s07071983");
+                store.connect("imap.yandex.ru", 993, email, password);
                 //Это папка, которую будем читать
                 Folder inbox = null;
                 try {

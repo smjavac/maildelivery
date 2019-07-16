@@ -35,7 +35,7 @@ public class MainLayout extends HorizontalLayout {
 
         inbox.addClickListener(clickEvent1 -> {
             try {
-                UserService.ReadEmail();
+                UserService.ReadEmail(email.getValue(), messageTxT.getValue());
                 LOGGER.debug("Письма считаны");
             } catch (MessagingException e) {
                 LOGGER.error("Письма не считаны(((");
