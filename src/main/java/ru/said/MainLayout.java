@@ -14,8 +14,10 @@ import javax.mail.*;
 public class MainLayout extends HorizontalLayout {
     private Button send = new Button("Отправить");
     private Button inbox = new Button("Входящие");
-    private TextField email = new TextField("EMAIL");
+    private TextField email = new TextField("EMAILFORSEND");
     private TextField messageTxT = new TextField("text");
+    private TextField myEmail = new TextField("myEmail");
+    private PasswordField password = new PasswordField("password");
     private MenuBar logoutMenu = new MenuBar();
     private VerticalLayout verticalLayout = new VerticalLayout();
     private HorizontalLayout horizontalLayout = new HorizontalLayout();
@@ -25,7 +27,7 @@ public class MainLayout extends HorizontalLayout {
 
         send.addClickListener(clickEvent -> {
             try {
-                UserService.sendMessage(email.getValue(), messageTxT.getValue());
+                UserService.sendMessage(email.getValue(), messageTxT.getValue(), myEmail.getValue(), password.getValue() );
                 LOGGER.debug("Письмо отправлено");
             } catch (MessagingException e) {
                 LOGGER.debug("Письмо не отправлено(((");
@@ -35,7 +37,7 @@ public class MainLayout extends HorizontalLayout {
 
         inbox.addClickListener(clickEvent1 -> {
             try {
-                UserService.ReadEmail(email.getValue(), messageTxT.getValue());
+                UserService.ReadEmail(myEmail.getValue(), password.getValue());
                 LOGGER.debug("Письма считаны");
             } catch (MessagingException e) {
                 LOGGER.error("Письма не считаны(((");
@@ -52,7 +54,7 @@ public class MainLayout extends HorizontalLayout {
             }
         });
         LOGGER.debug("SELECT * FROM ddt_users");
-        horizontalLayout.addComponents(email, messageTxT);
+        horizontalLayout.addComponents(myEmail,password,email, messageTxT);
         verticalLayout.addComponents(horizontalLayout, send, inbox, logoutMenu);
         addComponent(verticalLayout);
     }

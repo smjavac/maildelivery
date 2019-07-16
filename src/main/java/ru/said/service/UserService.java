@@ -60,7 +60,7 @@ public class UserService {
         //Создаем новое почтовое сообщение
         Message message = new MimeMessage(session);
         //От кого
-        message.setFrom(new InternetAddress("sm.yusupov@yandex.ru"));
+        message.setFrom(new InternetAddress(myEmail));
         //Кому
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(emailForSend));
         //Тема письма
