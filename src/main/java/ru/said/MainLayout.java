@@ -52,8 +52,9 @@ public class MainLayout extends HorizontalLayout {
             }
         });
         LOGGER.debug("SELECT * FROM ddt_users");
-        horizontalLayout.addComponents(email, messageTxT);
-        verticalLayout.addComponents(horizontalLayout, send, inbox, logoutMenu);
+        horizontalLayout.addComponents(email, messageTxT, send);
+        verticalLayout.addComponents(horizontalLayout, inbox, logoutMenu);
+        horizontalLayout.setComponentAlignment(send, Alignment.BOTTOM_CENTER);
         addComponent(verticalLayout);
     }
 
