@@ -29,7 +29,7 @@ public class UserService {
 
     static {
         Properties properties = new Properties();
-        String key = "emailSettings.properties";
+        String key = "emailSettings";
         String path = System.getProperty(key);
         File file = new File(path);
         if (StringUtils.isBlank(path)) {
