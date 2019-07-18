@@ -32,6 +32,8 @@ public class MainLayout extends HorizontalLayout {
                 LOGGER.debug("Ваше письмо не отправлено(((");
                 LOGGER.debug(e.getMessage());
             }
+            email.clear();
+            messageTxT.clear();
         });
 
         inbox.addClickListener(clickEvent1 -> {
