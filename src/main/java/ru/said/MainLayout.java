@@ -5,6 +5,7 @@ import com.vaadin.server.Page;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import org.apache.log4j.Logger;
+import ru.said.service.MailService;
 import ru.said.service.UserService;
 
 
@@ -25,7 +26,7 @@ public class MainLayout extends HorizontalLayout {
 
         send.addClickListener(clickEvent -> {
             try {
-                UserService.sendMessage(email.getValue(), messageTxT.getValue());
+                MailService.sendMessage(email.getValue(), messageTxT.getValue());
                 LOGGER.debug("Ваше письмо отправлено");
             } catch (MessagingException e) {
                 LOGGER.debug("Ваше письмо не отправлено(((");
@@ -35,7 +36,7 @@ public class MainLayout extends HorizontalLayout {
 
         inbox.addClickListener(clickEvent1 -> {
             try {
-                UserService.ReadEmail();
+                MailService.ReadEmail();
                 LOGGER.debug("Письма считаны");
             } catch (MessagingException e) {
                 LOGGER.error("Письма не считаны(((");
